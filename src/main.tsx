@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App.tsx';
 import './index.css';
-import { StateProvider, } from './stateManager/StateProvider.tsx';
+import {
+  StateProvider as ContextBasedStateProvider
+} from './stateManagers/contextBased/StateProvider.tsx';
 import { initialState } from './store.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <StateProvider initialState={initialState}>
+    <ContextBasedStateProvider initialState={initialState}>
       <App />
-    </StateProvider>
+    </ContextBasedStateProvider>
   </React.StrictMode>,
 );
