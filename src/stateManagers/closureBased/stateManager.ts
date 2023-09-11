@@ -5,13 +5,13 @@ export interface Action<Types> {
 
 export type Reducer<ActionTypes, State> = (action: Action<ActionTypes>, state?: State) => State;
 
-export const createStore = <ActionsTypes, State>(reducer: Reducer<ActionsTypes, State>) => {
+export const createStore = <ActionTypes, State>(reducer: Reducer<ActionTypes, State>) => {
   let listeners: (() => void)[] = [];
   let state = reducer({ type: '@@INIT' });
 
   return {
     getState: () => state,
-    dispatch: (action: Action<ActionsTypes>) => {
+    dispatch: (action: Action<ActionTypes>) => {
       state = reducer(action, state);
 
       listeners.forEach(l => l());
