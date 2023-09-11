@@ -1,20 +1,20 @@
-import { createStore } from '../../stateManagers/closureBased/stateManager';
+import { Action, createStore } from '../../stateManagers/closureBased/stateManager';
 
 export const initialState = {
   counter: 0,
 };
 
-export const counterActions = {
-  increment: { type: 'INCREMENT' },
-  decrement: { type: 'DECREMENT' },
-} as const;
+export enum COUNTER_ACTIONS {
+  INCREMENT,
+  DECREMENT
+}
 
-const counterReducer = (state = initialState, action) => {
+const counterReducer = (action: Action<COUNTER_ACTIONS>, state = initialState) => {
   switch(action.type) {
-    case counterActions.increment.type:
+    case COUNTER_ACTIONS.INCREMENT:
       return { counter: state.counter + 1 };
 
-    case counterActions.decrement.type:
+    case COUNTER_ACTIONS.DECREMENT:
       return { counter: state.counter - 1 };
 
     default: return state;

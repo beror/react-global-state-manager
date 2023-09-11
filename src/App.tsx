@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useGlobalState as useContextBasedGlobalState } from './stateManagers/contextBased/StateProvider';
 import { useGlobalState as useClosureBasedGlobalState } from './stateManagers/closureBased/hooks';
 import { useGlobalState as useReact18BasedGlobalState } from './stateManagers/react18Based/hooks';
-import closureBasedStore, { counterActions as closureBasedCounterActions } from './stores/closureBased/store';
+import closureBasedStore, { COUNTER_ACTIONS as closureBasedCounterActions } from './stores/closureBased/store';
 import react18BasedStore, {counterActions as react18BasedCounterActions } from './stores/react18Based/store';
 
 import closureBasedCreateStore from './assets/closureBasedCreateStore.png';
@@ -16,7 +16,7 @@ import react18BasedHook from './assets/react18BasedHook.png';
 import react18BasedUsage from './assets/react18BasedUsage.png';
 
 function App() {
-  const counter = useClosureBasedGlobalState(state => state.counter);
+  const { counter } = useClosureBasedGlobalState(closureBasedStore.getState);
   const { state, setState } = useContextBasedGlobalState();
   const counterReact18 = useReact18BasedGlobalState(state => state.counter);
 
@@ -41,7 +41,7 @@ function App() {
           </div>
           <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
           <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
-          <button onClick={() => closureBasedStore.dispatch(closureBasedCounterActions.increment)}>
+          <button onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT })}>
             counter is {counter}
           </button>
         </div>
