@@ -1,14 +1,15 @@
-  import { useGlobalState } from './stateManager/StateProvider';
+import { useGlobalState } from './stateManagers/closureBased/hooks';
+import store, { counterActions } from './stores/closureBased/store';
 
 function App() {
-  const { state, setState } = useGlobalState();
+  const counter = useGlobalState(state => state.counter);
 
   return (
     <>
       <h1>State manager test</h1>
       <div className="card">
-      <button onClick={() => setState({ ...state, counter: state.counter + 1 })}>
-          state.counter is {state.counter}
+      <button onClick={() => store.dispatch(counterActions.increment)}>
+          counter is {counter}
         </button>
       </div>
     </>

@@ -6,7 +6,7 @@ import './index.css';
 import {
   StateProvider as ContextBasedStateProvider
 } from './stateManagers/contextBased/StateProvider.tsx';
-import { initialState } from './store.ts';
+import { initialState } from './stores/contextBased/store.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
