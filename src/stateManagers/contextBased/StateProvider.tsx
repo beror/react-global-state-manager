@@ -1,17 +1,32 @@
-import { createContext, useContext, useState } from 'react';
+import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
-const StateContext = createContext({});
+type SetState<T> = Dispatch<SetStateAction<T>>;
 
-export const StateProvider = ({ initialState, children }) => {
-  const [ state, setState ] = useState(initialState);
+interface StateProviderProps {
+  children: JSX.Element;
+}
 
-  return (
-    <StateContext.Provider value={{ state, setState }}>
-      {children}
-    </StateContext.Provider>
-  );
-};
+interface StateProviderContext<T> {
+  globalState: T;
+  setGlobalState: SetState<T> | (() => void);
+}
 
-export const useGlobalState = () => {
-  return useContext(StateContext);
+export const getHookAndStateProvider = <T,>(initialState: T) => {
+  const StateContext = createContext<StateProviderContext<T>>({
+    globalState: initialState,
+    setGlobalState: () => {}
+  });
+
+  return [
+    () => useContext(StateContext),
+    ({ children }: StateProviderProps) => {
+      const [ globalState, setGlobalState ] = useState(initialState);
+
+      return (
+        <StateContext.Provider value={{globalState, setGlobalState}}>
+          {children}
+        </StateContext.Provider>
+      );
+    }
+  ] as const;
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useGlobalState as useContextBasedGlobalState } from './stateManagers/contextBased/StateProvider';
+import { useGlobalState as useContextBasedGlobalState } from './stores/contextBased/store';
 import { useGlobalState as useClosureBasedGlobalState } from './stateManagers/closureBased/hooks';
 import closureBasedStore, { COUNTER_ACTIONS as closureBasedCounterActions } from './stores/closureBased/store';
 import react18BasedStore, { COUNTER_ACTIONS as react18BasedCounterActions } from './stores/react18Based/store';
@@ -16,7 +16,7 @@ import react18BasedUsage from './assets/react18BasedUsage.png';
 
 function App() {
   const { counter } = useClosureBasedGlobalState(closureBasedStore.getState);
-  const { state, setState } = useContextBasedGlobalState();
+  const { globalState, setGlobalState } = useContextBasedGlobalState();
   const { counter: counterReact18 } = react18BasedStore.useGlobalState();
 
   const [ isSameSignHovered, setIsSameSignHovered ] = useState(false);
@@ -50,8 +50,8 @@ function App() {
           <img src={contextBasedStateProvider} alt='Showcase of state provider in context-based state manager' />
           <img src={contextBasedProvidingState} alt='Showcase of providing the state in context-based state manager' />
           <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
-          <button onClick={() => setState({ ...state, counter: state.counter + 1 })}>
-            state.counter is {state.counter}
+          <button onClick={() => setGlobalState({ ...globalState, counter: globalState.counter + 1 })}>
+            state.counter is {globalState.counter}
           </button>
         </div>
 
