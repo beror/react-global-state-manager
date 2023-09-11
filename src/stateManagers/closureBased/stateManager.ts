@@ -1,5 +1,5 @@
 export const createStore = (reducer) => {
-  const listeners = [];
+  let listeners = [];
   let currentState = reducer(undefined, {});
 
   return {
@@ -7,15 +7,13 @@ export const createStore = (reducer) => {
     dispatch: (action) => {
       currentState = reducer(currentState, action);
 
-      listeners.forEach((listener) => {
-        listener();
-      });
+      listeners.forEach(l => l());
     },
     subscribe: (newListener) => {
       listeners.push(newListener);
 
       const unsubscribe = () => {
-        listeners = listeners.filter((l) => l !== newListener);
+        listeners = listeners.filter(l => l !== newListener);
       };
 
       return unsubscribe;
