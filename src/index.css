@@ -32,7 +32,7 @@ body {
 main {
   display: flex;
   justify-content: space-between;
-  width: 90vw;
+  gap: 10px;
 }
 
 h1 {
@@ -47,7 +47,7 @@ h2 {
 
 img {
   display: block;
-  max-width: 90%;
+  width: 100%;
 }
 
 button {
@@ -75,6 +75,20 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  flex: 1;
+}
+
+.image-with-text-container {
+  position: relative;
+}
+
+.same-image-sign {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 0.08vw solid gray;
+  padding: 5px;
+  cursor: default;
 }
 
 @media (prefers-color-scheme: light) {
