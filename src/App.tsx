@@ -17,29 +17,38 @@ import react18BasedStoreCreation from './assets/react18BasedStoreCreation.png';
 import react18BasedUsage from './assets/react18BasedUsage.png';
 
 function App() {
-  const { counter } = useClosureBasedGlobalState(closureBasedStore.getState);
-  const { counter2 } = useClosureBasedGlobalState(closureBasedStore.getState);
-  const [ derivedStateFromClosureBasedStates, setDerivedStateFromClosureBasedStates ] = useState(counter + counter2);
+  const { counter1: counter1ClosureBased } = useClosureBasedGlobalState(closureBasedStore.getState);
+  const { counter2: counter2ClosureBased } = useClosureBasedGlobalState(closureBasedStore.getState);
+  const [
+    derivedStateFromClosureBasedStates,
+    setDerivedStateFromClosureBasedStates
+  ] = useState(counter1ClosureBased + counter2ClosureBased);
 
   useEffect(() => {
-    setDerivedStateFromClosureBasedStates(counter + counter2);
-  }, [counter, counter2]);
+    setDerivedStateFromClosureBasedStates(counter1ClosureBased + counter2ClosureBased);
+  }, [counter1ClosureBased, counter2ClosureBased]);
 
 
-  const { counter: counterReact18, counter2: counter2React18 } = react18BasedStore.useGlobalState();
-  const [ derivedStateFromReact18BasedStates, setDerivedStateFromReact18BasedStates ] = useState(counterReact18 + counter2React18);
+  const { counter1: counter1React18Based, counter2: counter2React18Based } = react18BasedStore.useGlobalState();
+  const [
+    derivedStateFromReact18BasedStates,
+    setDerivedStateFromReact18BasedStates
+  ] = useState(counter1React18Based + counter2React18Based);
 
   useEffect(() => {
-    setDerivedStateFromReact18BasedStates(counterReact18 + counter2React18);
-  }, [counterReact18, counter2React18]);
+    setDerivedStateFromReact18BasedStates(counter1React18Based + counter2React18Based);
+  }, [counter1React18Based, counter2React18Based]);
 
 
-  const { globalState, setGlobalState } = useContextBasedGlobalState();
-  const [ derivedStateFromContextBasedStates, setDerivedStateFromContextBasedStates ] = useState(globalState.counter + globalState.counter2)
+  const { globalState: contextBasedGlobalState, setGlobalState: setContextBasedGlobalState } = useContextBasedGlobalState();
+  const [
+    derivedStateFromContextBasedStates,
+    setDerivedStateFromContextBasedStates
+  ] = useState(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2)
   
   useEffect(() => {
-    setDerivedStateFromContextBasedStates(globalState.counter + globalState.counter2);
-  }, [globalState.counter, globalState.counter2]);
+    setDerivedStateFromContextBasedStates(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2);
+  }, [contextBasedGlobalState.counter1, contextBasedGlobalState.counter2]);
 
 
   const [ isSameSignHovered, setIsSameSignHovered ] = useState(false);
@@ -64,11 +73,11 @@ function App() {
           </div>
           <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
           <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
-          <button onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER })}>
-            <code>counter</code>: {counter}
+          <button onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_1 })}>
+            counter 1: {counter1ClosureBased}
           </button>
           <button onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_2 })}>
-            <code>counter2</code>: {counter2}
+            counter 2: {counter2ClosureBased}
           </button>
           <button disabled>
             Derived state (sum): {derivedStateFromClosureBasedStates}
@@ -89,11 +98,11 @@ function App() {
             </div>
           </div>
           <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
-          <button onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER })}>
-            <code>counterReact18</code>: {counterReact18}
+          <button onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_1 })}>
+            counter 1: {counter1React18Based}
           </button>
           <button onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_2 })}>
-            <code>counter2React18</code>: {counter2React18}
+            counter 2: {counter2React18Based}
           </button>
           <button disabled>
             Derived state (sum): {derivedStateFromReact18BasedStates}
@@ -101,16 +110,16 @@ function App() {
         </div>
 
         <div className='manager-presentation-box'>
-          <h2>Context-based state manager (simpler)</h2>
+          <h2>Context-based state manager</h2>
           <img src={contextBasedGetHookAndStateProvider} alt='Showcase of getting the state accessor hook and state provider of Context-based state manager' />
           <img src={contextBasedStoreCreation} alt='Showcase of store creation in Context-based state manager' />
           <img src={contextBasedProvidingState} alt='Showcase of providing the state of Context-based state manager to the application' />
           <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
-          <button onClick={() => setGlobalState({ ...globalState, counter: globalState.counter + 1 })}>
-            <code>globalState.counter</code>: {globalState.counter}
+          <button onClick={() => setContextBasedGlobalState({ ...contextBasedGlobalState, counter1: contextBasedGlobalState.counter1 + 1 })}>
+            counter 1: {contextBasedGlobalState.counter1}
           </button>
-          <button onClick={() => setGlobalState({ ...globalState, counter2: globalState.counter2 + 1 })}>
-            <code>globalState.counter2</code>: {globalState.counter2}
+          <button onClick={() => setContextBasedGlobalState({ ...contextBasedGlobalState, counter2: contextBasedGlobalState.counter2 + 1 })}>
+            counter 2: {contextBasedGlobalState.counter2}
           </button>
           <button disabled>
             Derived state (sum): {derivedStateFromContextBasedStates}
