@@ -20,7 +20,7 @@ const ClosureBased = () => {
   );
 
   const counter2ButtonOnClick = useCallback(
-    () => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_1 }),
+    () => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_2 }),
     []
   );
 
