@@ -3,10 +3,12 @@ export interface Action<Types> {
   payload?: unknown;
 }
 
+type Listener = (() => void);
+
 export type Reducer<ActionTypes, State> = (action: Action<ActionTypes>, state?: State) => State;
 
 export const createStore = <ActionTypes, State>(reducer: Reducer<ActionTypes, State>) => {
-  let listeners: (() => void)[] = [];
+  let listeners: Listener[] = [];
   let state = reducer({ type: '@@INIT' });
 
   return {
@@ -16,7 +18,7 @@ export const createStore = <ActionTypes, State>(reducer: Reducer<ActionTypes, St
 
       listeners.forEach(l => l());
     },
-    subscribe: (newListener: typeof listeners[0]) => {
+    subscribe: (newListener: Listener) => {
       listeners.push(newListener);
 
       const unsubscribe = () => {
