@@ -128,7 +128,6 @@ button:focus-visible {
 }
 
 .rerender-sign::before {
-  display: block;
   position: absolute;
   content: 'Re-render';
   top: 5px;
