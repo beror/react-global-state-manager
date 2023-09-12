@@ -32,7 +32,7 @@ const ClosureBased = () => {
       <StateButton onClick={counter2ButtonOnClick}>
         {`counter 2: ${counter2}`}
       </StateButton>
-      <StateButton>
+      <StateButton disabled>
         {`Derived state (sum): ${derivedState}`}
       </StateButton>
     </div>
@@ -64,7 +64,7 @@ const React18Based = () => {
       <StateButton onClick={counter2ButtonOnClick}>
         {`counter 2: ${counter2}`}
       </StateButton>
-      <StateButton>
+      <StateButton disabled>
         {`Derived state (sum): ${derivedState}`}
       </StateButton>
     </div>
@@ -105,7 +105,7 @@ const ContextBased = () => {
       <StateButton onClick={counter2ButtonOnClick}>
         {`counter 2: ${globalState.counter2}`}
       </StateButton>
-      <StateButton>
+      <StateButton disabled>
         {`Derived state (sum): ${derivedState}`}
       </StateButton>
     </div>

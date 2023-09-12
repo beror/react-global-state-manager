@@ -3,6 +3,7 @@ import { memo, useEffect, useRef } from 'react';
 interface StateButtonsProps {
   children: string;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 const appendRerenderSign = (element: HTMLElement) => {
@@ -12,7 +13,7 @@ const appendRerenderSign = (element: HTMLElement) => {
   setTimeout(() => element.removeChild(rerenderSignElement), 900);
 };
 
-const StateButton = memo(({ children, onClick }: StateButtonsProps) => {
+const StateButton = memo(({ children, onClick, disabled }: StateButtonsProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -24,7 +25,8 @@ const StateButton = memo(({ children, onClick }: StateButtonsProps) => {
   return (
     <button
       onClick={onClick}
-      ref={ref}>
+      ref={ref}
+      disabled={disabled}>
       {children}
     </button>
   );
