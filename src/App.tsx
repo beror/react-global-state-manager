@@ -26,9 +26,31 @@ function App() {
       </a>
 
       <main>
-        <div className='manager-presentation-box'>
+        <div className='showcase-row' style={{ marginBottom: '20px' }}>
           <h2>Closure-based state manager</h2>
-          <img src={closureBasedCreateStore} alt='Showcase of createStore in closure-based state manager' />
+          <h2>React-18-based state manager</h2>
+          <h2>Context-based state manager</h2>
+        </div>
+        <div className='showcase-row' style={{ marginBottom: '60px' }}>
+          <StateShowcase.ClosureBased />
+          <StateShowcase.React18Based />
+          <StateShowcase.ContextBased />  
+        </div>
+        <div className='showcase-row'>
+          <h2>Implementation</h2>
+        </div>
+        <div className='showcase-row'>
+          <div>
+            <img src={closureBasedCreateStore} alt='Showcase of createStore in closure-based state manager' />
+            <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
+          </div>
+          <img src={react18BasedCreateStore} alt='Showcase of createStore in React-18-based state manager' />
+          <img src={contextBasedGetHookAndStateProvider} alt='' />
+        </div>
+        <div className='showcase-row'>
+          <h2>Setup</h2>
+        </div>
+        <div className='showcase-row'>
           <div className='image-with-text-container'>
             <img src={react18BasedStoreCreation} alt='Showcase of store creation in closure-based state manager' />
             <div
@@ -39,14 +61,6 @@ function App() {
                 Same
             </div>
           </div>
-          <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
-          <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
-          <StateShowcase.ClosureBased />
-        </div>
-
-        <div className='manager-presentation-box'>
-          <h2>React-18-based state manager</h2>
-          <img src={react18BasedCreateStore} alt='Showcase of createStore in React-18-based state manager' />
           <div className='image-with-text-container'>
             <img src={react18BasedStoreCreation} alt='Showcase of store creation in React-18-based state manager' />
             <div
@@ -57,17 +71,18 @@ function App() {
                 Same
             </div>
           </div>
-          <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
-          <StateShowcase.React18Based />
+          <div>
+            <img src={contextBasedStoreCreation} alt='Showcase of store creation in Context-based state manager' />
+            <img src={contextBasedProvidingState} alt='Showcase of providing the state of Context-based state manager to the application' />
+          </div>
         </div>
-
-        <div className='manager-presentation-box'>
-          <h2>Context-based state manager</h2>
-          <img src={contextBasedGetHookAndStateProvider} alt='Showcase of getting the state accessor hook and state provider of Context-based state manager' />
-          <img src={contextBasedStoreCreation} alt='Showcase of store creation in Context-based state manager' />
-          <img src={contextBasedProvidingState} alt='Showcase of providing the state of Context-based state manager to the application' />
+        <div className='showcase-row'>
+          <h2>Usage</h2>
+        </div>
+        <div className='showcase-row'>
+          <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
+          <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
           <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
-          <StateShowcase.ContextBased />
         </div>
       </main>
     </>

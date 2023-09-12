@@ -31,23 +31,26 @@ body {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 3.5vw;
+  line-height: 3;
 }
 
 h2 {
-  font-size: 1.9em;
+  font-size: 2vw;
   line-height: 1.1;
+  margin: 0;
 }
 
 img {
   display: block;
   width: 100%;
+  object-fit: contain;
 }
 
 button {
@@ -71,12 +74,23 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.manager-presentation-box {
+.showcase-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+}
+
+.showcase-row > * {
+  flex: 1;
+}
+
+.showcase-row > div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  flex: 1;
+  gap: 5px;
 }
 
 .image-with-text-container {
@@ -85,8 +99,8 @@ button:focus-visible {
 
 .same-image-sign {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   border: 0.08vw solid gray;
   padding: 5px;
   cursor: default;
@@ -113,12 +127,15 @@ button:focus-visible {
   }
 }
 
-.test::before {
+.rerender-sign::before {
+  display: block;
   position: absolute;
-  right: -4.6em;
-  top: 0px;
-  display: inline;
   content: 'Re-render';
+  top: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-right: auto;
+  margin-left: auto;
   color: gold;
   font-size: 60%;
 

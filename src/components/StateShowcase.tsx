@@ -25,7 +25,7 @@ const ClosureBased = () => {
   );
 
   return (
-    <>
+    <div className='state-showcase-box'>
       <StateButton onClick={counter1ButtonOnClick}>
         {`counter 1: ${counter1}`}
       </StateButton>
@@ -35,7 +35,7 @@ const ClosureBased = () => {
       <StateButton>
         {`Derived state (sum): ${derivedState}`}
       </StateButton>
-    </>
+    </div>
   );
 };
 
@@ -57,7 +57,7 @@ const React18Based = () => {
   );
 
   return (
-    <>
+    <div className='state-showcase-box'>
       <StateButton onClick={counter1ButtonOnClick}>
         {`counter 1: ${counter1}`}
       </StateButton>
@@ -67,7 +67,7 @@ const React18Based = () => {
       <StateButton>
         {`Derived state (sum): ${derivedState}`}
       </StateButton>
-    </>
+    </div>
   );
 };
 
@@ -98,7 +98,7 @@ const ContextBased = () => {
   );
 
   return (
-    <>
+    <div className='state-showcase-box'>
       <StateButton onClick={counter1ButtonOnClick}>
         {`counter 1: ${globalState.counter1}`}
       </StateButton>
@@ -108,7 +108,7 @@ const ContextBased = () => {
       <StateButton>
         {`Derived state (sum): ${derivedState}`}
       </StateButton>
-    </>
+    </div>
   );
 };
 
