@@ -5,7 +5,7 @@ import store from '../../stores/closureBased/store';
 export const useGlobalState = <State>(getState: () => State) => {
   const [ state, setState ] = useState(getState);
 
-  useEffect(() => store.subscribe(() => setState(getState())), []);
+  useEffect(() => store.subscribe(() => setState(getState())), [getState]);
 
   return state;
 };
