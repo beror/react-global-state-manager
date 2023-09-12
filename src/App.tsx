@@ -26,20 +26,20 @@ function App() {
   }, [counter, counter2]);
 
 
-  const { globalState, setGlobalState } = useContextBasedGlobalState();
-  const [ derivedStateFromContextBasedStates, setDerivedStateFromContextBasedStates ] = useState(globalState.counter + globalState.counter2)
-  
-  useEffect(() => {
-    setDerivedStateFromContextBasedStates(globalState.counter + globalState.counter2);
-  }, [globalState.counter, globalState.counter2]);
-
-
   const { counter: counterReact18, counter2: counter2React18 } = react18BasedStore.useGlobalState();
   const [ derivedStateFromReact18BasedStates, setDerivedStateFromReact18BasedStates ] = useState(counterReact18 + counter2React18);
 
   useEffect(() => {
     setDerivedStateFromReact18BasedStates(counterReact18 + counter2React18);
   }, [counterReact18, counter2React18]);
+
+
+  const { globalState, setGlobalState } = useContextBasedGlobalState();
+  const [ derivedStateFromContextBasedStates, setDerivedStateFromContextBasedStates ] = useState(globalState.counter + globalState.counter2)
+  
+  useEffect(() => {
+    setDerivedStateFromContextBasedStates(globalState.counter + globalState.counter2);
+  }, [globalState.counter, globalState.counter2]);
 
 
   const [ isSameSignHovered, setIsSameSignHovered ] = useState(false);
