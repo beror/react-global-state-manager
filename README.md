@@ -24,7 +24,7 @@ useEffect(() => {
 ## The closure-based one
 
 - No need to re-declare the `useGlobalState` hook to make it typed. The hook has to be provided with `store.getState` which makes it possible to type it
-- State retreival: `useGlobalState(store.getState)`
+- State retrieval: `useGlobalState(store.getState)`
 - State update: `store.dispatch({ type: counterActions.INCREMENT_COUNTER })`
 
 `createStore` uses a closure inside of which it declares the state object. It returns a store object that provides `getState`, `dispatch`, `subscribe` functions.
@@ -37,7 +37,7 @@ This one resembles Redux a lot
 ## The React-18-based one
 
 - No need to re-declare the `useGlobalState` hook to make it typed. The hook is provided as a property on the store object which makes it possible to have it typed right away
-- State retreival: `store.useGlobalState()`
+- State retrieval: `store.useGlobalState()`
 - State update: `store.dispatch({ type: counterActions.INCREMENT_COUNTER })`
 
 This one is called so because it makes use of the `useSyncExternalStore` hook introduced in React 18. This state manager is based on the closure-based one but some of the implementation is abstracted away by the hook.
@@ -45,5 +45,5 @@ This one is called so because it makes use of the `useSyncExternalStore` hook in
 ## The React-Context-based one
 
 - No need to re-declare the `useGlobalState` hook to make it typed. The hook is returned by `getHookAndStateProvider` "factory" that returns [ useGlobalState, StateProvider ] which makes it possible to have it typed right away
-- State retreival: `useGlobalState()`
+- State retrieval: `useGlobalState()`
 - State update: `setGlobalState({ ...globalState, counter: globalState.counter + 1 })`

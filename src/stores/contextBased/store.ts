@@ -1,4 +1,4 @@
-import { getHookAndStateProvider } from "../../stateManagers/contextBased/StateProvider";
+import { getHookAndStateProvider } from '../../stateManagers/contextBased/StateProvider';
 
 export const initialState = {
   counter1: 0,
