@@ -15,6 +15,7 @@ import contextBasedUsage from './assets/contextBasedUsage.png';
 import react18BasedCreateStore from './assets/react18BasedCreateStore.png';
 import react18BasedStoreCreation from './assets/react18BasedStoreCreation.png';
 import react18BasedUsage from './assets/react18BasedUsage.png';
+import githubMark from './assets/github-mark.svg';
 
 function App() {
   const {
@@ -64,6 +65,11 @@ function App() {
   return (
     <>
       <h1>State managers showcase</h1>
+      <a
+        href='https://github.com/beror/react-global-state-manager'
+        className='github-mark-anchor'>
+        <img src={githubMark} alt='Repository' className='github-mark-image'/>
+      </a>
 
       <main>
         <div className='manager-presentation-box'>

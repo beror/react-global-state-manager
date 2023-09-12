@@ -91,6 +91,16 @@ button:focus-visible {
   cursor: default;
 }
 
+.github-mark-anchor {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.github-mark-image {
+  width: 3vw;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -101,5 +111,8 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+  .github-mark {
+    filter: invert(1);
   }
 }
