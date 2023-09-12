@@ -8,10 +8,12 @@ import react18BasedStore, { COUNTER_ACTIONS as react18BasedCounterActions } from
 import closureBasedCreateStore from './assets/closureBasedCreateStore.png';
 import closureBasedHook from './assets/closureBasedHook.png';
 import closureBasedUsage from './assets/closureBasedUsage.png';
-import contextBasedStateProvider from './assets/contextBasedStateProvider.png';
+import contextBasedGetHookAndStateProvider from './assets/contextBasedGetHookAndStateProvider.png';
+import contextBasedStoreCreation from './assets/contextBasedStoreCreation.png';
 import contextBasedProvidingState from './assets/contextBasedProvidingState.png';
 import contextBasedUsage from './assets/contextBasedUsage.png';
-import react18BasedHook from './assets/react18BasedHook.png';
+import react18BasedCreateStore from './assets/react18BasedCreateStore.png';
+import react18BasedStoreCreation from './assets/react18BasedStoreCreation.png';
 import react18BasedUsage from './assets/react18BasedUsage.png';
 
 function App() {
@@ -23,13 +25,14 @@ function App() {
 
   return (
     <>
-      <h1>State manager showcase</h1>
+      <h1>State managers showcase</h1>
 
       <main>
         <div className='manager-presentation-box'>
-          <h2>Closure-based state manager (main)</h2>
+          <h2>Closure-based state manager</h2>
+          <img src={closureBasedCreateStore} alt='Showcase of createStore in closure-based state manager' />
           <div className='image-with-text-container'>
-            <img src={closureBasedCreateStore} alt='Showcase of createStore in closure-based state manager' />
+            <img src={react18BasedStoreCreation} alt='Showcase of store creation in closure-based state manager' />
             <div
               onMouseEnter={() => setIsSameSignHovered(true)}
               onMouseLeave={() => setIsSameSignHovered(false)}
@@ -46,19 +49,10 @@ function App() {
         </div>
 
         <div className='manager-presentation-box'>
-          <h2>Context-based state manager</h2>
-          <img src={contextBasedStateProvider} alt='Showcase of state provider in context-based state manager' />
-          <img src={contextBasedProvidingState} alt='Showcase of providing the state in context-based state manager' />
-          <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
-          <button onClick={() => setGlobalState({ ...globalState, counter: globalState.counter + 1 })}>
-            state.counter is {globalState.counter}
-          </button>
-        </div>
-
-        <div className='manager-presentation-box'>
           <h2>React-18-based state manager</h2>
+          <img src={react18BasedCreateStore} alt='Showcase of createStore in React-18-based state manager' />
           <div className='image-with-text-container'>
-            <img src={closureBasedCreateStore} alt='Showcase of createStore in React-18-based state manager' />
+            <img src={react18BasedStoreCreation} alt='Showcase of store creation in React-18-based state manager' />
             <div
               onMouseEnter={() => setIsSameSignHovered(true)}
               onMouseLeave={() => setIsSameSignHovered(false)}
@@ -67,10 +61,20 @@ function App() {
                 Same
             </div>
           </div>
-          <img src={react18BasedHook} alt='Showcase of the hook in React-18-based state manager' />
           <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
           <button onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT })}>
             counterReact18 is {counterReact18}
+          </button>
+        </div>
+
+        <div className='manager-presentation-box'>
+          <h2>Context-based state manager (simpler)</h2>
+          <img src={contextBasedGetHookAndStateProvider} alt='Showcase of getting the state accessor hook and state provider of Context-based state manager' />
+          <img src={contextBasedStoreCreation} alt='Showcase of store creation in Context-based state manager' />
+          <img src={contextBasedProvidingState} alt='Showcase of providing the state of Context-based state manager to the application' />
+          <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
+          <button onClick={() => setGlobalState({ ...globalState, counter: globalState.counter + 1 })}>
+            state.counter is {globalState.counter}
           </button>
         </div>
       </main>
