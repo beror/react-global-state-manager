@@ -52,6 +52,7 @@ img {
 
 button {
   display: block;
+  position: relative;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -99,6 +100,28 @@ button:focus-visible {
 
 .github-mark-image {
   width: 3vw;
+}
+
+@keyframes fadeOutUpwards {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -20px;
+    color: transparent;
+  }
+}
+
+.test::before {
+  position: absolute;
+  right: -4.6em;
+  top: 0px;
+  display: inline;
+  content: 'Re-render';
+  color: gold;
+  font-size: 60%;
+
+  animation: fadeOutUpwards 1s ease;
 }
 
 @media (prefers-color-scheme: light) {

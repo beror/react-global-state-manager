@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { useGlobalState as useContextBasedGlobalState } from './stores/contextBased/store';
 import { useGlobalState as useClosureBasedGlobalState } from './stateManagers/closureBased/hooks';
@@ -27,9 +27,31 @@ function App() {
     setDerivedStateFromClosureBasedStates
   ] = useState(counter1ClosureBased + counter2ClosureBased);
 
+  const counter1ClosureBasedButtonRef = useRef<HTMLButtonElement>(null);
+  const counter2ClosureBasedButtonRef = useRef<HTMLButtonElement>(null);
+  const derivedStateClosureBasedButtonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     setDerivedStateFromClosureBasedStates(counter1ClosureBased + counter2ClosureBased);
   }, [counter1ClosureBased, counter2ClosureBased]);
+
+  useEffect(() => {
+    if(counter1ClosureBasedButtonRef.current) {
+      appendRerenderSign(counter1ClosureBasedButtonRef.current);
+    }
+  }, [counter1ClosureBased]);
+
+  useEffect(() => {
+    if(counter2ClosureBasedButtonRef.current) {
+      appendRerenderSign(counter2ClosureBasedButtonRef.current);
+    }
+  }, [counter2ClosureBased]);
+
+  useEffect(() => {
+    if(derivedStateClosureBasedButtonRef.current) {
+      appendRerenderSign(derivedStateClosureBasedButtonRef.current);
+    }
+  }, [derivedStateFromClosureBasedStates]);
 
 
   const {
@@ -45,6 +67,28 @@ function App() {
     setDerivedStateFromReact18BasedStates(counter1React18Based + counter2React18Based);
   }, [counter1React18Based, counter2React18Based]);
 
+  const counter1React18BasedButtonRef = useRef<HTMLButtonElement>(null);
+  const counter2React18BasedButtonRef = useRef<HTMLButtonElement>(null);
+  const derivedStateReact18BasedButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if(counter1React18BasedButtonRef.current) {
+      appendRerenderSign(counter1React18BasedButtonRef.current);
+    }
+  }, [counter1React18Based]);
+
+  useEffect(() => {
+    if(counter2React18BasedButtonRef.current) {
+      appendRerenderSign(counter2React18BasedButtonRef.current);
+    }
+  }, [counter2React18Based]);
+
+  useEffect(() => {
+    if(derivedStateReact18BasedButtonRef.current) {
+      appendRerenderSign(derivedStateReact18BasedButtonRef.current);
+    }
+  }, [derivedStateFromReact18BasedStates]);
+
 
   const {
     globalState: contextBasedGlobalState,
@@ -54,6 +98,28 @@ function App() {
     derivedStateFromContextBasedStates,
     setDerivedStateFromContextBasedStates
   ] = useState(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2);
+
+  const counter1ContextBasedButtonRef = useRef<HTMLButtonElement>(null);
+  const counter2ContextBasedButtonRef = useRef<HTMLButtonElement>(null);
+  const derivedStateContextBasedButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if(counter1ContextBasedButtonRef.current) {
+      appendRerenderSign(counter1ContextBasedButtonRef.current);
+    }
+  }, [contextBasedGlobalState.counter1]);
+
+  useEffect(() => {
+    if(counter2ContextBasedButtonRef.current) {
+      appendRerenderSign(counter2ContextBasedButtonRef.current);
+    }
+  }, [contextBasedGlobalState.counter2]);
+
+  useEffect(() => {
+    if(derivedStateContextBasedButtonRef.current) {
+      appendRerenderSign(derivedStateContextBasedButtonRef.current);
+    }
+  }, [derivedStateFromContextBasedStates]);
   
   useEffect(() => {
     setDerivedStateFromContextBasedStates(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2);
@@ -61,6 +127,13 @@ function App() {
 
 
   const [ isSameSignHovered, setIsSameSignHovered ] = useState(false);
+
+  const appendRerenderSign = (element: HTMLElement) => {
+    const rerenderSignElement = document.createElement('span');
+    rerenderSignElement.classList.add('test');
+    element.appendChild(rerenderSignElement);
+    setTimeout(() => element.removeChild(rerenderSignElement), 900);
+  };
 
   return (
     <>
@@ -88,14 +161,16 @@ function App() {
           <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
           <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
           <button
-            onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_1 })}>
+            onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_1 })}
+            ref={counter1ClosureBasedButtonRef}>
             counter 1: {counter1ClosureBased}
           </button>
           <button
-            onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_2 })}>
+            onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_2 })}
+            ref={counter2ClosureBasedButtonRef}>
             counter 2: {counter2ClosureBased}
           </button>
-          <button disabled>
+          <button disabled ref={derivedStateClosureBasedButtonRef}>
             Derived state (sum): {derivedStateFromClosureBasedStates}
           </button>
         </div>
@@ -115,14 +190,16 @@ function App() {
           </div>
           <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
           <button
-            onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_1 })}>
+            onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_1 })}
+            ref={counter1React18BasedButtonRef}>
             counter 1: {counter1React18Based}
           </button>
           <button
-            onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_2 })}>
+            onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_2 })}
+            ref={counter2React18BasedButtonRef}>
             counter 2: {counter2React18Based}
           </button>
-          <button disabled>
+          <button disabled ref={derivedStateReact18BasedButtonRef}>
             Derived state (sum): {derivedStateFromReact18BasedStates}
           </button>
         </div>
@@ -137,17 +214,19 @@ function App() {
             onClick={() => setContextBasedGlobalState({
               ...contextBasedGlobalState,
               counter1: contextBasedGlobalState.counter1 + 1
-            })}>
+            })}
+            ref={counter1ContextBasedButtonRef}>
             counter 1: {contextBasedGlobalState.counter1}
           </button>
           <button
             onClick={() => setContextBasedGlobalState({
               ...contextBasedGlobalState,
               counter2: contextBasedGlobalState.counter2 + 1
-            })}>
+            })}
+            ref={counter2ContextBasedButtonRef}>
             counter 2: {contextBasedGlobalState.counter2}
           </button>
-          <button disabled>
+          <button disabled ref={derivedStateContextBasedButtonRef}>
             Derived state (sum): {derivedStateFromContextBasedStates}
           </button>
         </div>
