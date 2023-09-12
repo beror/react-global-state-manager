@@ -87,14 +87,14 @@ const ContextBased = () => {
       ...state,
       counter1: state.counter1 + 1
     })),
-    []
+    [setGlobalState]
   );
   const counter2ButtonOnClick = useCallback(
     () => setGlobalState((state) => ({
       ...state,
       counter2: state.counter2 + 1
     })),
-    []
+    [setGlobalState]
   );
 
   return (
