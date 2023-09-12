@@ -19,7 +19,7 @@ useEffect(() => {
 }, [counter1, counter2]);
 ```
 
-# Explaining each one
+# Explaining each state manager
 
 ## The closure-based one
 
