@@ -41,18 +41,18 @@ function App() {
         </div>
         <div className='showcase-row'>
           <div>
-            <img src={closureBasedCreateStore} alt='Showcase of createStore in closure-based state manager' />
-            <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
+            <img src={closureBasedCreateStore} alt='Showcase of createStore in the closure-based state manager' />
+            <img src={closureBasedHook} alt='Showcase of the hook implementation in the closure-based state manager' />
           </div>
-          <img src={react18BasedCreateStore} alt='Showcase of createStore in React-18-based state manager' />
-          <img src={contextBasedGetHookAndStateProvider} alt='' />
+          <img src={react18BasedCreateStore} alt='Showcase of createStore in the React-18-based state manager' />
+          <img src={contextBasedGetHookAndStateProvider} alt='Showcase of how the state retrieval hook and state provider are created' />
         </div>
         <div className='showcase-row'>
           <h2>Setup</h2>
         </div>
         <div className='showcase-row'>
           <div className='image-with-text-container'>
-            <img src={react18BasedStoreCreation} alt='Showcase of store creation in closure-based state manager' />
+            <img src={react18BasedStoreCreation} alt='Showcase of store creation in the closure-based state manager' />
             <div
               onMouseEnter={() => setIsSameSignHovered(true)}
               onMouseLeave={() => setIsSameSignHovered(false)}
@@ -62,7 +62,7 @@ function App() {
             </div>
           </div>
           <div className='image-with-text-container'>
-            <img src={react18BasedStoreCreation} alt='Showcase of store creation in React-18-based state manager' />
+            <img src={react18BasedStoreCreation} alt='Showcase of store creation in the React-18-based state manager' />
             <div
               onMouseEnter={() => setIsSameSignHovered(true)}
               onMouseLeave={() => setIsSameSignHovered(false)}
@@ -72,17 +72,17 @@ function App() {
             </div>
           </div>
           <div>
-            <img src={contextBasedStoreCreation} alt='Showcase of store creation in Context-based state manager' />
-            <img src={contextBasedProvidingState} alt='Showcase of providing the state of Context-based state manager to the application' />
+            <img src={contextBasedStoreCreation} alt='Showcase of store creation in the Context-based state manager' />
+            <img src={contextBasedProvidingState} alt='Showcase of providing the state of the Context-based state manager to the application' />
           </div>
         </div>
         <div className='showcase-row'>
           <h2>Usage</h2>
         </div>
         <div className='showcase-row'>
-          <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
-          <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
-          <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
+          <img src={closureBasedUsage} alt='Showcase of usage of the closure-based state manager' />
+          <img src={react18BasedUsage} alt='Showcase of usage of the React-18-based state manager' />
+          <img src={contextBasedUsage} alt='Showcase of usage of the Context-based state manager' />
         </div>
       </main>
     </>
