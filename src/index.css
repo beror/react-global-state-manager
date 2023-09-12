@@ -90,6 +90,7 @@ button:focus-visible {
   border: 0.08vw solid gray;
   padding: 5px;
   cursor: default;
+  user-select: none;
 }
 
 .github-mark-anchor {
