@@ -5,6 +5,13 @@ interface StateButtonsProps {
   onClick?: () => void;
 }
 
+const appendRerenderSign = (element: HTMLElement) => {
+  const rerenderSignElement = document.createElement('span');
+  rerenderSignElement.classList.add('rerender-sign');
+  element.appendChild(rerenderSignElement);
+  setTimeout(() => element.removeChild(rerenderSignElement), 900);
+};
+
 const StateButton = memo(({ children, onClick }: StateButtonsProps) => {
   const ref = useRef<HTMLButtonElement>(null);
 
@@ -13,13 +20,6 @@ const StateButton = memo(({ children, onClick }: StateButtonsProps) => {
       appendRerenderSign(ref.current);
     }
   });
-
-  const appendRerenderSign = (element: HTMLElement) => {
-    const rerenderSignElement = document.createElement('span');
-    rerenderSignElement.classList.add('test');
-    element.appendChild(rerenderSignElement);
-    setTimeout(() => element.removeChild(rerenderSignElement), 900);
-  };
 
   return (
     <button
