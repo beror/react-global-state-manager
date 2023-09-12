@@ -17,8 +17,10 @@ import react18BasedStoreCreation from './assets/react18BasedStoreCreation.png';
 import react18BasedUsage from './assets/react18BasedUsage.png';
 
 function App() {
-  const { counter1: counter1ClosureBased } = useClosureBasedGlobalState(closureBasedStore.getState);
-  const { counter2: counter2ClosureBased } = useClosureBasedGlobalState(closureBasedStore.getState);
+  const {
+    counter1: counter1ClosureBased,
+    counter2: counter2ClosureBased
+  } = useClosureBasedGlobalState(closureBasedStore.getState);
   const [
     derivedStateFromClosureBasedStates,
     setDerivedStateFromClosureBasedStates
@@ -29,7 +31,10 @@ function App() {
   }, [counter1ClosureBased, counter2ClosureBased]);
 
 
-  const { counter1: counter1React18Based, counter2: counter2React18Based } = react18BasedStore.useGlobalState();
+  const {
+    counter1: counter1React18Based,
+    counter2: counter2React18Based
+  } = react18BasedStore.useGlobalState();
   const [
     derivedStateFromReact18BasedStates,
     setDerivedStateFromReact18BasedStates
@@ -40,11 +45,14 @@ function App() {
   }, [counter1React18Based, counter2React18Based]);
 
 
-  const { globalState: contextBasedGlobalState, setGlobalState: setContextBasedGlobalState } = useContextBasedGlobalState();
+  const {
+    globalState: contextBasedGlobalState,
+    setGlobalState: setContextBasedGlobalState
+  } = useContextBasedGlobalState();
   const [
     derivedStateFromContextBasedStates,
     setDerivedStateFromContextBasedStates
-  ] = useState(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2)
+  ] = useState(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2);
   
   useEffect(() => {
     setDerivedStateFromContextBasedStates(contextBasedGlobalState.counter1 + contextBasedGlobalState.counter2);
@@ -73,10 +81,12 @@ function App() {
           </div>
           <img src={closureBasedHook} alt='Showcase of the hook in closure-based state manager' />
           <img src={closureBasedUsage} alt='Showcase of usage of closure-based state manager' />
-          <button onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_1 })}>
+          <button
+            onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_1 })}>
             counter 1: {counter1ClosureBased}
           </button>
-          <button onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_2 })}>
+          <button
+            onClick={() => closureBasedStore.dispatch({ type: closureBasedCounterActions.INCREMENT_COUNTER_2 })}>
             counter 2: {counter2ClosureBased}
           </button>
           <button disabled>
@@ -98,10 +108,12 @@ function App() {
             </div>
           </div>
           <img src={react18BasedUsage} alt='Showcase of usage of React-18-based state manager' />
-          <button onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_1 })}>
+          <button
+            onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_1 })}>
             counter 1: {counter1React18Based}
           </button>
-          <button onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_2 })}>
+          <button
+            onClick={() => react18BasedStore.dispatch({ type: react18BasedCounterActions.INCREMENT_COUNTER_2 })}>
             counter 2: {counter2React18Based}
           </button>
           <button disabled>
@@ -115,10 +127,18 @@ function App() {
           <img src={contextBasedStoreCreation} alt='Showcase of store creation in Context-based state manager' />
           <img src={contextBasedProvidingState} alt='Showcase of providing the state of Context-based state manager to the application' />
           <img src={contextBasedUsage} alt='Showcase of usage of context-based state manager' />
-          <button onClick={() => setContextBasedGlobalState({ ...contextBasedGlobalState, counter1: contextBasedGlobalState.counter1 + 1 })}>
+          <button
+            onClick={() => setContextBasedGlobalState({
+              ...contextBasedGlobalState,
+              counter1: contextBasedGlobalState.counter1 + 1
+            })}>
             counter 1: {contextBasedGlobalState.counter1}
           </button>
-          <button onClick={() => setContextBasedGlobalState({ ...contextBasedGlobalState, counter2: contextBasedGlobalState.counter2 + 1 })}>
+          <button
+            onClick={() => setContextBasedGlobalState({
+              ...contextBasedGlobalState,
+              counter2: contextBasedGlobalState.counter2 + 1
+            })}>
             counter 2: {contextBasedGlobalState.counter2}
           </button>
           <button disabled>
