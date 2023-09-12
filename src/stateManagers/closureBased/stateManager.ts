@@ -5,9 +5,15 @@ export interface Action<Types> {
 
 type Listener = (() => void);
 
+export interface Store<ActionTypes, State> {
+  getState: () => State;
+  dispatch: (action: Action<ActionTypes>) => void;
+  subscribe: (newListener: Listener) => () => void;
+}
+
 export type Reducer<ActionTypes, State> = (action: Action<ActionTypes>, state?: State) => State;
 
-export const createStore = <ActionTypes, State>(reducer: Reducer<ActionTypes, State>) => {
+export const createStore = <ActionTypes, State>(reducer: Reducer<ActionTypes, State>): Store<ActionTypes, State> => {
   let listeners: Listener[] = [];
   let state = reducer({ type: '@@INIT' });
 
