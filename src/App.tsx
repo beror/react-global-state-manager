@@ -22,7 +22,7 @@ function App() {
       <a
         href='https://github.com/beror/react-global-state-manager'
         className='github-mark-anchor'>
-        <img src={githubMark} alt='Repository' className='github-mark-image'/>
+        <img src={githubMark} alt='Repository' className='github-mark-image' />
       </a>
 
       <main>

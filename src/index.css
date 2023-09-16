@@ -153,7 +153,7 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-  .github-mark {
+  .github-mark-image {
     filter: invert(1);
   }
 }
