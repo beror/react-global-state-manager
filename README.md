@@ -7,6 +7,10 @@ This repo has **3** implementations of a **fully typed global state manager** fo
 
 # See the demo
 
+https://beror.github.io/react-global-state-manager/
+
+or
+
 Clone the repo -> `npm i` -> `npm run dev` -> go to `localhost:5173`
 
 # Efficiency, derived states
